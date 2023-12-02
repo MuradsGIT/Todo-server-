@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // connection with mongodb
-mongoose.connect("mongodb+srv://murad:murad123@cluster0.shxziqo.mongodb.net/crud");
+mongoose.connect(process.env.MONGO);
 
 mongoose.connection.on("error", (error) => {
   console.error("MongoDB connection error:", error);

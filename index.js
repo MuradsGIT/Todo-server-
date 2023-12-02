@@ -76,9 +76,9 @@ app.get("/api/user/logout", async (req, res) => {
 app.get("/api/user/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
-
+  console.log(token)
     if (!token) return res.json(false);
-
+    
     jwt.verify(token, process.env.SECRET);
 
     res.send(true);

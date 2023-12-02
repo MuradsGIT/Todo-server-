@@ -25,12 +25,8 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.options('*', cors());
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 // connection with mongodb
 mongoose.connect(process.env.MONGO);
 

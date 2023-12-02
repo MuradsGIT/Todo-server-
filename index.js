@@ -26,7 +26,23 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+// Middleware to set CORS headers
+app.use((req, res, next) => {
+  // Allow all origins (adjust as needed)
+  res.header('Access-Control-Allow-Origin', '*');
 
+  // Allow specific headers
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  // Allow specific methods
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+  // Enable credentials (if needed)
+  // res.header('Access-Control-Allow-Credentials', 'true');
+
+  // Continue to the next middleware
+  next();
+});
 // connection with mongodb
 mongoose.connect(process.env.MONGO);
 

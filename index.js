@@ -41,7 +41,10 @@ app.post("/api/user/login", async (req, res) => {
     const user = await UserModel.login(email, password);
     const token = createToken(user._id);
     res.cookie("token", token, {
+      
       httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Set to true in production
+
     });
     res.json(token);
   } catch (error) {
@@ -56,6 +59,8 @@ app.post("/api/user/register", async (req, res) => {
     const token = createToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Set to true in production
+
     });
     res.json(token);
   } catch (error) {
@@ -67,6 +72,8 @@ app.get("/api/user/logout", async (req, res) => {
   res
     .cookie("token", "", {
       httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Set to true in production
+
       expires: new Date(0),
       secure: true,
       sameSite: "none",
@@ -80,8 +87,6 @@ app.get("/api/user/loggedIn", (req, res) => {
     if (!token) return res.json(false);
    
     jwt.verify(token, process.env.SECRET);
-    console.log( process.env.SECRET)
- console.log(  jwt.verify(token, process.env.SECRET))
     res.send(true);
   } catch (err) {
     res.json(false);

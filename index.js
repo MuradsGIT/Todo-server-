@@ -78,9 +78,10 @@ app.get("/api/user/loggedIn", (req, res) => {
     const token = req.cookies.token;
   console.log(token)
     if (!token) return res.json(false);
-    
+   
     jwt.verify(token, process.env.SECRET);
-
+    console.log( process.env.SECRET)
+ console.log(  jwt.verify(token, process.env.SECRET))
     res.send(true);
   } catch (err) {
     res.json(false);

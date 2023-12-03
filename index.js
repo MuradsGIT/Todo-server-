@@ -43,10 +43,11 @@ app.post("/api/user/login", async (req, res) => {
     res.cookie("token", token, {
       
       httpOnly: true,
-          secure: process.env.NODE_ENV === 'production', // Set to true in production
+          secure: process.env.NODE_ENV // Set to true in production
 
     });
     res.json(token);
+    console.log("this is the token in login " + token)
   } catch (error) {
     res.json({ error: error.message });
   }
@@ -83,7 +84,7 @@ app.get("/api/user/logout", async (req, res) => {
 app.get("/api/user/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
-  console.log(token)
+  console.log("token in logged in " + token)
     if (!token) return res.json(false);
    
     jwt.verify(token, process.env.SECRET);

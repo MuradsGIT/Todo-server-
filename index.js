@@ -40,14 +40,16 @@ app.post("/api/user/login", async (req, res) => {
   try {
     const user = await UserModel.login(email, password);
     const token = createToken(user._id);
+    
     res.cookie("token", token, {
       
       httpOnly: true,
-          secure: process.env.NODE_ENV // Set to true in production
+  secure: process.env.NODE_ENV === 'production', // Set to true in production
 
     });
+        console.log("this is the token in login " + token)
+
     res.json(token);
-    console.log("this is the token in login " + token)
   } catch (error) {
     res.json({ error: error.message });
   }

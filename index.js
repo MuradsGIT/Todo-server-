@@ -42,10 +42,9 @@ app.post("/api/user/login", async (req, res) => {
     const token = createToken(user._id);
     
     res.cookie("token", token, {
-      
+      secure: true,
       httpOnly: true,
-  secure: process.env.NODE_ENV === 'production', // Set to true in production
-
+      sameSite: "None",
     });
         console.log("this is the token in login " + token)
 
@@ -61,9 +60,9 @@ app.post("/api/user/register", async (req, res) => {
     const user = await UserModel.signup(email, password);
     const token = createToken(user._id);
     res.cookie("token", token, {
+      secure: true,
       httpOnly: true,
-          secure: process.env.NODE_ENV === 'production', // Set to true in production
-
+      sameSite: "None",
     });
     res.json(token);
   } catch (error) {
@@ -75,11 +74,11 @@ app.get("/api/user/logout", async (req, res) => {
   res
     .cookie("token", "", {
       httpOnly: true,
-          secure: process.env.NODE_ENV === 'production', // Set to true in production
 
       expires: new Date(0),
       secure: true,
-      sameSite: "none",
+      httpOnly: true,
+      sameSite: "None",
     })
     .send();
 });

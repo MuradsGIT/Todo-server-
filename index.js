@@ -18,7 +18,7 @@ const createToken = (_id) => {
 // important stuff
 app.use(
   cors({
-    origin: "https://muradsgit.github.io",
+    origin: "https://frontend-mzpp.onrender.com",
     credentials: true,
   })
 );

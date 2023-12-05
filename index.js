@@ -18,7 +18,7 @@ const createToken = (_id) => {
 // important stuff
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://muradsgit.github.io/Todo-client-/",
     credentials: true,
   })
 );

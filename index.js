@@ -18,7 +18,7 @@ const createToken = (_id) => {
 // important stuff
 app.use(
   cors({
-    origin: "https://todo-client-ue9a.onrender.com",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );

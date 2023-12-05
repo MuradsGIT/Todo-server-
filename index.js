@@ -18,10 +18,11 @@ const createToken = (_id) => {
 // important stuff
 app.use(
   cors({
-    origin: "https://muradsgit.github.io/Todo-client-/",
+    origin: "https://muradsgit.github.io",
     credentials: true,
   })
 );
+
 app.options('*', cors())
 
 app.use(express.json());
